@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 2em;
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      text-align: left;
+      background-color: #fdfdf8;
+      color: #2093ff; 
+    }
+  </style>
+</head>
+<body>
+
+<div id="clock-line"></div>
+
+<script>
+  // 1) Your 31 [subject, action] pairs:
+  const lines = [
+    ["The happy cow", "stops to take a nap."],
+    ["The patient dove", "flies into the sun."],
+    ["The satisfied beetle", "stops to smell the sunflowers."],
+    ["The slow tortoise", "decides to go for a walk anyway."],
+    ["The quiet bee", "listens to the light."],
+    ["The content bud", "stops waiting for itself."],
+    ["The careful father", "holds up the mirror."],
+    ["The heavy rug", "catches a heavy stone."],
+    ["The dull star", "agrees not to shine."],
+    ["The full lion", "arranges its bones."],
+    ["The hot sun", "begins to sweat."],
+    ["The early morning light", "falls in love with all the colors."],
+    ["The surprised shadow", "begins to float."],
+    ["The cool morning", "dances off the night."],
+    ["The anxious woman", "takes a deep breath."],
+    ["The deep night", "decends into the narrow places."],
+    ["The still water", "settles the hummingbird."],
+    ["The desperate clock", "decides the hour."],
+    ["The still world", "explodes into an image once more."],
+    ["The heavy hand", "seeks to feed itself."],
+    ["The warm baby", "holds the light in its mouth."],
+    ["The patient earth", "sustains the ground."],
+    ["The large empty room", "unwraps the shadows."],
+    ["The new dusk", "opens its mouth."],
+    ["The heavy water", "keeps still as the sun."],
+    ["The empty path", "begins to fill itself."],
+    ["The soft echo", "hangs in the air."],
+    ["The heavy love", "remembers to be full."],
+    ["The worn path", "cools the stones."],
+    ["The slow time", "continues breathing."],
+    ["The tired fire", "holds still."]
+  ];
+
+
+  function updateClock() {
+    const now = new Date();
+    const hour = now.getHours();       // 0..23
+    const minute = now.getMinutes();   // 0..59
+
+    // 3) Determine which lines to use
+    const hourIndex = hour % 31;
+    const minuteIndex = minute % 31;
+    const subject = lines[hourIndex][0];
+    const action = lines[minuteIndex][1];
+    const finalSentence = `${subject} ${action}`;
+
+
+    // 5) Insert the text as a clickable link to your portfolio 
+    //    (change URL as needed).
+    const clockLine = document.getElementById("clock-line");
+    clockLine.innerHTML = `
+      <a href="https://meechboakye.com" target="_blank" 
+         style="color: inherit; text-decoration: none;">
+        ${finalSentence}
+      </a>
+    `;
+
+    // Apply the dynamic color to the container
+    clockLine.style.color = hourColor;
+  }
+
+  // Run on page load
+  updateClock();
+  // Update every minute
+  setInterval(updateClock, 60000);
+</script>
+
+</body>
+</html>
