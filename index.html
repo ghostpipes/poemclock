@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling -->
   <style>
     body {
       margin: 2em;
@@ -11,6 +12,35 @@
       background-color: #fdfdf8;
       color: #2093ff; 
     }
+
+    #clock-line {
+      line-height: 1.5;
+    }
+
+    /* Mobile-friendly adjustments */
+    @media (max-width: 768px) {
+      body {
+        font-size: 1.5rem; /* Smaller font size for smaller screens */
+        margin: 1.5em;
+      }
+
+      #clock-line {
+        font-size: 1.5rem; /* Adjust clock text size */
+        text-align: center; /* Center text for better readability */
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 1.2rem; /* Even smaller font for very small screens */
+        margin: 1em;
+      }
+
+      #clock-line {
+        font-size: 1.2rem; /* Adjust clock text size */
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -18,7 +48,6 @@
 <div id="clock-line"></div>
 
 <script>
-  // 1) Your 31 [subject, action] pairs:
   const lines = [
     ["The happy cow", "stops to take a nap."],
     ["The patient dove", "flies into the sun."],
@@ -53,22 +82,17 @@
     ["The tired fire", "holds still."]
   ];
 
-
   function updateClock() {
     const now = new Date();
     const hour = now.getHours();       // 0..23
     const minute = now.getMinutes();   // 0..59
 
-    // 3) Determine which lines to use
     const hourIndex = hour % 31;
     const minuteIndex = minute % 31;
     const subject = lines[hourIndex][0];
     const action = lines[minuteIndex][1];
     const finalSentence = `${subject} ${action}`;
 
-
-    // 5) Insert the text as a clickable link to your portfolio 
-    //    (change URL as needed).
     const clockLine = document.getElementById("clock-line");
     clockLine.innerHTML = `
       <a href="https://meechboakye.com" target="_blank" 
@@ -76,14 +100,9 @@
         ${finalSentence}
       </a>
     `;
-
-    // Apply the dynamic color to the container
-    clockLine.style.color = hourColor;
   }
 
-  // Run on page load
   updateClock();
-  // Update every minute
   setInterval(updateClock, 60000);
 </script>
 
